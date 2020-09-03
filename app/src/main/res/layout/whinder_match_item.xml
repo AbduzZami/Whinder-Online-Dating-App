@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="20dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/whindercolor"
+            android:gravity="center_vertical"
+            >
+            <de.hdodenhof.circleimageview.CircleImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/nahid"
+                app:civ_border_width="2dp"
+                app:civ_border_color="#FFFFFF"
+                android:layout_margin="10dp"
+                android:id="@+id/profilepic"
+                />
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="username"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:layout_toRightOf="@+id/profilepic"
+                android:layout_centerInParent="true"
+                />
+            <ImageButton
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_baseline_message_24"
+                android:layout_alignParentEnd="true"
+                android:background="@android:color/transparent"
+                android:tint="#FFFFFF"
+                android:layout_alignParentRight="true"
+                android:layout_margin="10dp"
+                android:layout_centerInParent="true"
+                />
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

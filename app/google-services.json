@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "587781445253",
+    "firebase_url": "https://whinder-884eb.firebaseio.com",
+    "project_id": "whinder-884eb",
+    "storage_bucket": "whinder-884eb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:587781445253:android:84a168d4268266d63d7bec",
+        "android_client_info": {
+          "package_name": "com.example.whinder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "587781445253-paroti7to6r2aj3qt3r7rv8ggclpmb4o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA4trKXsckXPwl91hDCSSdvggQJQsSSZY4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "587781445253-paroti7to6r2aj3qt3r7rv8ggclpmb4o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
