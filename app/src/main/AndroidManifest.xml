@@ -12,9 +12,9 @@
         <activity android:name=".ChooseActivity"></activity>
         <activity android:name=".MainActivity" />
         <activity android:name=".WhinderActivity" />
-        <activity android:name=".LoginActivity" />
+        <activity android:name=".RegisterActvity" />
         <activity android:name=".ProfileActivity" />
-        <activity android:name=".RegisterActvity">
+        <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

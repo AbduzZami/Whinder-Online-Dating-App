@@ -20,6 +20,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
@@ -34,6 +35,7 @@ public class ChooseActivity extends AppCompatActivity {
     private int i = 0;
     private String usersex ;
     private int randomNum ;
+    private String WhinderIDleft , WhinderIDright ;
 
 
 
@@ -96,6 +98,7 @@ public class ChooseActivity extends AppCompatActivity {
                 User user = childSnapshot.getValue(User.class);
                 ratherusername.setText(user.getUsername());
                 ratherusername1.setText(user.getUsername());
+                WhinderIDright = user.getId();
             }
 
             @Override
@@ -124,6 +127,7 @@ public class ChooseActivity extends AppCompatActivity {
                 DataSnapshot childSnapshot = (DataSnapshot) itr.next();
                 User user = childSnapshot.getValue(User.class);
                 prevusername.setText(user.getUsername());
+                WhinderIDleft = user.getId();
             }
 
             @Override
@@ -140,54 +144,20 @@ public class ChooseActivity extends AppCompatActivity {
         if (i==randomNum)
         {
             i=0;
-            Intent intent = new Intent(ChooseActivity.this,WhinderActivity.class);
-            intent.putExtra("Whinder",ratherusername.getText().toString());
-            startActivity(intent);
-            finish();
-        }
+
+            HashMap<String,Object> hashMap = new HashMap<>();
+            hashMap.put("id",WhinderIDleft);
+            firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+            DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference("UsersMain").child(firebaseUser.getUid()).child("Whinder").push();
+            databaseReference1.updateChildren(hashMap);
+
+            HashMap<String,Object> hashMap1 = new HashMap<>();
+            firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+            hashMap1.put("id",firebaseUser.getUid());
+            DatabaseReference databaseReference2 = FirebaseDatabase.getInstance().getReference("UsersMain").child(WhinderIDleft).child("Whindered").push();
+            databaseReference2.updateChildren(hashMap1);
 
 
-
-        try {
-            DatabaseReference dref = FirebaseDatabase.getInstance().getReference("Users").child(UserSex());
-
-            dref.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    int userCount = (int) dataSnapshot.getChildrenCount();
-                    Random random = new Random();
-                    int rand = random.nextInt(userCount);
-                    Iterator itr = dataSnapshot.getChildren().iterator();
-
-
-                    for(int j = 0; j < rand; j++) {
-                        itr.next();
-                    }
-                    DataSnapshot childSnapshot = (DataSnapshot) itr.next();
-                    User user = childSnapshot.getValue(User.class);
-                    ratherusername.setText(user.getUsername());
-                    ratherusername1.setText(user.getUsername());
-                    i++;
-//                ratherusername1.setText(Integer.toString(i));
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-
-                }
-            });
-        }catch (Exception e)
-        {
-
-        }
-    }
-
-    public void Counter2(View view)
-    {
-
-        if (i==randomNum)
-        {
-            i=0;
             Intent intent = new Intent(ChooseActivity.this,WhinderActivity.class);
             intent.putExtra("Whinder",prevusername.getText().toString());
             startActivity(intent);
@@ -213,8 +183,72 @@ public class ChooseActivity extends AppCompatActivity {
                     }
                     DataSnapshot childSnapshot = (DataSnapshot) itr.next();
                     User user = childSnapshot.getValue(User.class);
+                    ratherusername.setText(user.getUsername());
+                    ratherusername1.setText(user.getUsername());
+                    WhinderIDright = user.getId();
+                    i++;
+//                ratherusername1.setText(Integer.toString(i));
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+        }catch (Exception e)
+        {
+
+        }
+    }
+
+    public void Counter2(View view)
+    {
+
+        if (i==randomNum)
+        {
+            i=0;
+
+            HashMap<String,Object> hashMap = new HashMap<>();
+            hashMap.put("id",WhinderIDright);
+            firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+            DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference("UsersMain").child(firebaseUser.getUid()).child("Whinder").push();
+            databaseReference1.updateChildren(hashMap);
+
+            HashMap<String,Object> hashMap1 = new HashMap<>();
+            firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+            hashMap1.put("id",firebaseUser.getUid());
+            DatabaseReference databaseReference2 = FirebaseDatabase.getInstance().getReference("UsersMain").child(WhinderIDright).child("Whindered").push();
+            databaseReference2.updateChildren(hashMap1);
+
+
+            Intent intent = new Intent(ChooseActivity.this,WhinderActivity.class);
+            intent.putExtra("Whinder",ratherusername.getText().toString());
+            startActivity(intent);
+            finish();
+        }
+
+
+
+        try {
+            DatabaseReference dref = FirebaseDatabase.getInstance().getReference("Users").child(UserSex());
+
+            dref.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    int userCount = (int) dataSnapshot.getChildrenCount();
+                    Random random = new Random();
+                    int rand = random.nextInt(userCount);
+                    Iterator itr = dataSnapshot.getChildren().iterator();
+
+
+                    for(int j = 0; j < rand; j++) {
+                        itr.next();
+                    }
+                    DataSnapshot childSnapshot = (DataSnapshot) itr.next();
+                    User user = childSnapshot.getValue(User.class);
                     prevusername.setText(user.getUsername());
                     ratherusername1.setText(user.getUsername());
+                    WhinderIDleft = user.getId();
                     i++;
 //                ratherusername1.setText(Integer.toString(i));
                 }
