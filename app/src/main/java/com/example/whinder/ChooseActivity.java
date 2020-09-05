@@ -108,7 +108,7 @@ public class ChooseActivity extends AppCompatActivity {
         });
     }
 
-    private void RandomUserPrev(String sx)
+    private void RandomUserPrev(final String sx)
     {
         DatabaseReference dref = FirebaseDatabase.getInstance().getReference("Users").child(sx);
 
@@ -146,16 +146,24 @@ public class ChooseActivity extends AppCompatActivity {
             i=0;
 
             HashMap<String,Object> hashMap = new HashMap<>();
-            hashMap.put("id",WhinderIDleft);
+            hashMap.put("whinderis",WhinderIDleft);
             firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-            DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference("UsersMain").child(firebaseUser.getUid()).child("Whinder").push();
+            hashMap.put("whinderedby",firebaseUser.getUid());
+            DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference("Whinder").child(WhinderIDleft);
             databaseReference1.updateChildren(hashMap);
 
             HashMap<String,Object> hashMap1 = new HashMap<>();
+            hashMap1.put("id",WhinderIDleft);
+            hashMap1.put("username",prevusername.getText());
             firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-            hashMap1.put("id",firebaseUser.getUid());
-            DatabaseReference databaseReference2 = FirebaseDatabase.getInstance().getReference("UsersMain").child(WhinderIDleft).child("Whindered").push();
+            DatabaseReference databaseReference2 = FirebaseDatabase.getInstance().getReference("UsersMain").child(firebaseUser.getUid()).child("Whinder").child(WhinderIDleft);
             databaseReference2.updateChildren(hashMap1);
+
+//            HashMap<String,Object> hashMap1 = new HashMap<>();
+//            firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+//            hashMap1.put("id",firebaseUser.getUid());
+//            DatabaseReference databaseReference2 = FirebaseDatabase.getInstance().getReference("Whinder").child(WhinderIDleft).child("Whinderedby");
+//            databaseReference2.updateChildren(hashMap1);
 
 
             Intent intent = new Intent(ChooseActivity.this,WhinderActivity.class);
@@ -209,16 +217,25 @@ public class ChooseActivity extends AppCompatActivity {
             i=0;
 
             HashMap<String,Object> hashMap = new HashMap<>();
-            hashMap.put("id",WhinderIDright);
+            hashMap.put("whinderis",WhinderIDright);
             firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-            DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference("UsersMain").child(firebaseUser.getUid()).child("Whinder").push();
+            hashMap.put("whinderedby",firebaseUser.getUid());
+            DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference("Whinder").child(WhinderIDright);
+
             databaseReference1.updateChildren(hashMap);
 
             HashMap<String,Object> hashMap1 = new HashMap<>();
+            hashMap1.put("id",WhinderIDright);
+            hashMap1.put("username",ratherusername.getText());
             firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-            hashMap1.put("id",firebaseUser.getUid());
-            DatabaseReference databaseReference2 = FirebaseDatabase.getInstance().getReference("UsersMain").child(WhinderIDright).child("Whindered").push();
+            DatabaseReference databaseReference2 = FirebaseDatabase.getInstance().getReference("UsersMain").child(firebaseUser.getUid()).child("Whinder").child(WhinderIDright);
             databaseReference2.updateChildren(hashMap1);
+
+//            HashMap<String,Object> hashMap1 = new HashMap<>();
+//            firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+//            hashMap1.put("id",firebaseUser.getUid());
+//            DatabaseReference databaseReference2 = FirebaseDatabase.getInstance().getReference("Whinder").child(WhinderIDright).child("Whinderedby");
+//            databaseReference2.updateChildren(hashMap1);
 
 
             Intent intent = new Intent(ChooseActivity.this,WhinderActivity.class);

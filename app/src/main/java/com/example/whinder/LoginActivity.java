@@ -107,9 +107,16 @@ public class LoginActivity extends AppCompatActivity {
 
         if (firebaseUser!=null)
         {
-            Intent intent = new Intent(LoginActivity.this,ProfileActivity.class);
+            Intent intent = new Intent(LoginActivity.this,ChooseActivity.class);
             startActivity(intent);
             finish();
         }
+    }
+
+    public void GoToReg(View view)
+    {
+        Intent intent = new Intent(LoginActivity.this,RegisterActvity.class);
+        startActivity(intent);
+        finish();
     }
 }

@@ -179,6 +179,7 @@
                 android:layout_weight="9"
                 >
                 <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/matchrecyclerview"
                     android:layout_margin="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"

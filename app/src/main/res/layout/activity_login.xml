@@ -63,5 +63,16 @@
         android:layout_marginTop="20dp"
         />
 
+    <TextView
+        android:onClick="GoToReg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Don't have an account ? Register now"
+        android:textColor="@color/whindercolor"
+        android:textSize="20sp"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        />
+
 
 </LinearLayout>

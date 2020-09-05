@@ -132,6 +132,17 @@
         android:layout_marginTop="20dp"
         />
 
+    <TextView
+        android:onClick="GoToLog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Already have an account ? Login instead"
+        android:textColor="@color/whindercolor"
+        android:textSize="20sp"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        />
+
 
 
 </LinearLayout>
