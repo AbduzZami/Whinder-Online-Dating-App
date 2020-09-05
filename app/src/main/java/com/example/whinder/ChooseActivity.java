@@ -78,7 +78,7 @@ public class ChooseActivity extends AppCompatActivity {
 
     }
 
-    private void RandomUserRat(String sx)
+    private void RandomUserRat(final String sx)
     {
         DatabaseReference dref = FirebaseDatabase.getInstance().getReference("Users").child(sx);
 
@@ -96,6 +96,10 @@ public class ChooseActivity extends AppCompatActivity {
                 }
                 DataSnapshot childSnapshot = (DataSnapshot) itr.next();
                 User user = childSnapshot.getValue(User.class);
+                if (user.getUsername().equals(prevusername.getText()))
+                {
+                    RandomUserRat(sx);
+                }
                 ratherusername.setText(user.getUsername());
                 ratherusername1.setText(user.getUsername());
                 WhinderIDright = user.getId();
@@ -126,6 +130,10 @@ public class ChooseActivity extends AppCompatActivity {
                 }
                 DataSnapshot childSnapshot = (DataSnapshot) itr.next();
                 User user = childSnapshot.getValue(User.class);
+                if (user.getUsername().equals(ratherusername.getText()))
+                {
+                    RandomUserPrev(sx);
+                }
                 prevusername.setText(user.getUsername());
                 WhinderIDleft = user.getId();
             }
@@ -175,34 +183,7 @@ public class ChooseActivity extends AppCompatActivity {
 
 
         try {
-            DatabaseReference dref = FirebaseDatabase.getInstance().getReference("Users").child(UserSex());
-
-            dref.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    int userCount = (int) dataSnapshot.getChildrenCount();
-                    Random random = new Random();
-                    int rand = random.nextInt(userCount);
-                    Iterator itr = dataSnapshot.getChildren().iterator();
-
-
-                    for(int j = 0; j < rand; j++) {
-                        itr.next();
-                    }
-                    DataSnapshot childSnapshot = (DataSnapshot) itr.next();
-                    User user = childSnapshot.getValue(User.class);
-                    ratherusername.setText(user.getUsername());
-                    ratherusername1.setText(user.getUsername());
-                    WhinderIDright = user.getId();
-                    i++;
-//                ratherusername1.setText(Integer.toString(i));
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-
-                }
-            });
+            counter1random();
         }catch (Exception e)
         {
 
@@ -247,34 +228,7 @@ public class ChooseActivity extends AppCompatActivity {
 
 
         try {
-            DatabaseReference dref = FirebaseDatabase.getInstance().getReference("Users").child(UserSex());
-
-            dref.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    int userCount = (int) dataSnapshot.getChildrenCount();
-                    Random random = new Random();
-                    int rand = random.nextInt(userCount);
-                    Iterator itr = dataSnapshot.getChildren().iterator();
-
-
-                    for(int j = 0; j < rand; j++) {
-                        itr.next();
-                    }
-                    DataSnapshot childSnapshot = (DataSnapshot) itr.next();
-                    User user = childSnapshot.getValue(User.class);
-                    prevusername.setText(user.getUsername());
-                    ratherusername1.setText(user.getUsername());
-                    WhinderIDleft = user.getId();
-                    i++;
-//                ratherusername1.setText(Integer.toString(i));
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-
-                }
-            });
+            counter2random();
         }catch (Exception e){
 
         }
@@ -324,6 +278,78 @@ public class ChooseActivity extends AppCompatActivity {
         });
 
         return sex;
+    }
+
+    public void counter1random()
+    {
+        DatabaseReference dref = FirebaseDatabase.getInstance().getReference("Users").child(UserSex());
+
+        dref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                int userCount = (int) dataSnapshot.getChildrenCount();
+                Random random = new Random();
+                int rand = random.nextInt(userCount);
+                Iterator itr = dataSnapshot.getChildren().iterator();
+
+
+                for(int j = 0; j < rand; j++) {
+                    itr.next();
+                }
+                DataSnapshot childSnapshot = (DataSnapshot) itr.next();
+                User user = childSnapshot.getValue(User.class);
+                if (user.getUsername().equals(prevusername.getText()))
+                {
+                    counter1random();
+                }
+                ratherusername.setText(user.getUsername());
+                ratherusername1.setText(user.getUsername());
+                WhinderIDright = user.getId();
+                i++;
+//                ratherusername1.setText(Integer.toString(i));
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    public void counter2random()
+    {
+        DatabaseReference dref = FirebaseDatabase.getInstance().getReference("Users").child(UserSex());
+
+        dref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                int userCount = (int) dataSnapshot.getChildrenCount();
+                Random random = new Random();
+                int rand = random.nextInt(userCount);
+                Iterator itr = dataSnapshot.getChildren().iterator();
+
+
+                for(int j = 0; j < rand; j++) {
+                    itr.next();
+                }
+                DataSnapshot childSnapshot = (DataSnapshot) itr.next();
+                User user = childSnapshot.getValue(User.class);
+                if (user.getUsername().equals(ratherusername.getText()))
+                {
+                    counter2random();
+                }
+                prevusername.setText(user.getUsername());
+                ratherusername1.setText(user.getUsername());
+                WhinderIDleft = user.getId();
+                i++;
+//                ratherusername1.setText(Integer.toString(i));
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
 
